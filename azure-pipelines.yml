@@ -10,6 +10,7 @@ resources:
    - pipeline: test-workflow
      source: xumia.test-workflow
      trigger:
+      enabled: true
       branches:
        include:
          - 20*
