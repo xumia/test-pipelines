@@ -13,7 +13,7 @@ resources:
       enabled: true
       branches:
        include:
-         - 20*
+         - '*'
 
 pool:
   vmImage: ubuntu-latest
