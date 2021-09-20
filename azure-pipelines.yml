@@ -5,6 +5,11 @@
 
 trigger: none
 
+pr:
+  branches:
+    include:
+      - master
+
 resources:
  pipelines:
    - pipeline: test-workflow
