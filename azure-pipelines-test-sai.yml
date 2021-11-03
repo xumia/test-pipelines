@@ -31,7 +31,7 @@ steps:
   displayName: "Archive xgs sai"
 
 - script: |
-    rm -rf testsai_1.2.1.1_amd64.deb
+    rm -rf *.deb
     echo 1 > testdnxsai_1.2.1.1_amd64.deb
   workingDirectory: $(Build.ArtifactStagingDirectory)
   displayName: Make fake dnx packages
