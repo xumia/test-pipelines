@@ -22,22 +22,20 @@ steps:
   displayName: 'Run a multi-line script'
 
 - script: |
-    mkdir -p xgs
-    echo 1 > xgs/testsai_1.2.1.1_amd64.deb
+    echo 1 > testsai_1.2.1.1_amd64.deb
   workingDirectory: $(Build.ArtifactStagingDirectory)
   displayName: Make fake xgs packages
 
 - publish: $(Build.ArtifactStagingDirectory)/
-  artifact: ${{ parameters.platform }}
+  artifact: xgs
   displayName: "Archive xgs sai"
 
 - script: |
-    rm -rf xgs
-    mkdir -p dnx
-    echo 1 > dnx/testdnxsai_1.2.1.1_amd64.deb
+    rm -rf testsai_1.2.1.1_amd64.deb
+    echo 1 > testdnxsai_1.2.1.1_amd64.deb
   workingDirectory: $(Build.ArtifactStagingDirectory)
   displayName: Make fake dnx packages
 
 - publish: $(Build.ArtifactStagingDirectory)/
-  artifact: ${{ parameters.platform }}
+  artifact: dnx
   displayName: "Archive dnx sai"
