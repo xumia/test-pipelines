@@ -1,0 +1,43 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo triggerDefinitionName=$(Build.TriggeredBy.DefinitionName)
+    echo runId=$(resources.pipeline.test-workflow.runID)
+    echo triggerSourceBranch=$(resources.pipeline.test-workflow.sourceBranch)
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- script: |
+    mkdir -p xgs
+    echo 1 > xgs/testsai_1.2.1.1_amd64.deb
+  workingDirectory: $(Build.ArtifactStagingDirectory)
+  displayName: Make fake xgs packages
+
+- publish: $(Build.ArtifactStagingDirectory)/
+  artifact: ${{ parameters.platform }}
+  displayName: "Archive xgs sai"
+
+- script: |
+    rm -rf xgs
+    mkdir -p dnx
+    echo 1 > dnx/testdnxsai_1.2.1.1_amd64.deb
+  workingDirectory: $(Build.ArtifactStagingDirectory)
+  displayName: Make fake dnx packages
+
+- publish: $(Build.ArtifactStagingDirectory)/
+  artifact: ${{ parameters.platform }}
+  displayName: "Archive dnx sai"
