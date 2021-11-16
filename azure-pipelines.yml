@@ -11,5 +11,6 @@ pool:
 
 steps:
 - script: |
+    uname -r
     sudo azure-pipelines/build_and_install_module.sh
   displayName: 'Run a multi-line script'
