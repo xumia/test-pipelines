@@ -18,7 +18,7 @@ steps:
     echo triggerSourceBranch=$(resources.pipeline.test-workflow.sourceBranch)
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
-    for i in $(seq 1 100)
+    for i in $(seq 1 1000)
     do
       wget https://packages.trafficmanager.net/public/packages/hiredis_0.14.0.orig.tar.gz-6d565680a4af0d2e261abbc3e3431b2b -O hiredis_0.14.0.orig.tar.gz
     done
