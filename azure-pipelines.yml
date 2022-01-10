@@ -25,9 +25,12 @@ resources:
          - '*'
 
 parameters:
+  - name: Test1
+    type: number
+    default: 141
   - name: Test
     type: boolean
-    default: True
+    default:  eq('${{ parameters.Test1 }}', '141')
 
 pool:
   vmImage: ubuntu-latest
