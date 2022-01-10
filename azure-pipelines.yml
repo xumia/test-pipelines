@@ -24,12 +24,17 @@ resources:
        include:
          - '*'
 
+parameters:
+  - name: Test
+    type: boolean
+    default: True
+
 pool:
   vmImage: ubuntu-latest
 
 steps:
 - script: echo Hello, world!
-  continueOnError: eq('141', '141')
+  continueOnError: ${{ parameters.Test }}
   displayName: 'Run a one-line script'
 
 - script: |
