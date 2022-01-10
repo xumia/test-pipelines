@@ -38,6 +38,10 @@ steps:
     continueOnError: True
   displayName: 'Run a one-line script'
 
+- script: Last step failed
+  condition: Failed()
+  displayName: 'Run if failed'
+
 - script: |
     echo triggerDefinitionName=$(Build.TriggeredBy.DefinitionName)
     echo runId=$(resources.pipeline.test-workflow.runID)
