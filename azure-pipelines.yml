@@ -39,7 +39,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: echo "Last step failed"
-  ${{ if eq(parameters.Test, 142) }}:
+  ${{ if eq(parameters.Test, 141) }}:
     continueOnError: True
   condition: failed()
   displayName: 'Run if failed'
