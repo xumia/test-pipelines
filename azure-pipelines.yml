@@ -25,19 +25,17 @@ resources:
          - '*'
 
 parameters:
-  - name: Test1
+  - name: Test
     type: number
     default: 141
-  - name: Test
-    type: boolean
-    default:  eq('${{ parameters.Test1 }}', '141')
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
 - script: echo Hello, world!
-  continueOnError: ${{ parameters.Test }}
+  ${{ if ne(parameters.Test, 141) }}:
+    continueOnError: True
   displayName: 'Run a one-line script'
 
 - script: |
