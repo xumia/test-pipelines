@@ -38,7 +38,7 @@ steps:
     continueOnError: True
   displayName: 'Run a one-line script'
 
-- script: Last step failed
+- script: echo "Last step failed"
   condition: succeeded()
   displayName: 'Run if failed'
 
