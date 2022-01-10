@@ -39,7 +39,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: Last step failed
-  condition: not(succeeded())
+  condition: succeeded()
   displayName: 'Run if failed'
 
 - script: |
