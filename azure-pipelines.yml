@@ -33,7 +33,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- script: exit 1
   ${{ if ne(parameters.Test, 141) }}:
     continueOnError: True
   displayName: 'Run a one-line script'
