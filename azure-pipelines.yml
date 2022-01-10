@@ -36,6 +36,7 @@ steps:
 - script: exit 1
   ${{ if ne(parameters.Test, 141) }}:
     continueOnError: True
+  continueOnError: True
   displayName: 'Run a one-line script'
 
 - script: |
