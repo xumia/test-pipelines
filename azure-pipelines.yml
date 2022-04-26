@@ -29,8 +29,7 @@ parameters:
     type: number
     default: 141
 
-pool:
-  vmImage: ubuntu-latest
+pool: 1es-sonic-armhf
 
 steps:
 - script: exit 1
