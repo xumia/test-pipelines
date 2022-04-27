@@ -29,6 +29,13 @@ parameters:
     type: number
     default: 141
 
+variables:
+- name: BUILD_BRANCH
+  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+    value: $(System.PullRequest.TargetBranch)
+  ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+    value: $(Build.SourceBranch)
+
 pool: 1es-sonic-armhf
 
 steps:
@@ -43,6 +50,7 @@ steps:
   displayName: 'Run if failed'
 
 - script: |
+    echo BUILD_BRANCH=$(BUILD_BRANCH)
     echo triggerDefinitionName=$(Build.TriggeredBy.DefinitionName)
     echo runId=$(resources.pipeline.test-workflow.runID)
     echo triggerSourceBranch=$(resources.pipeline.test-workflow.sourceBranch)
