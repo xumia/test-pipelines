@@ -34,7 +34,8 @@ variables:
   ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
     value: $(Build.SourceBranch)
 
-pool: ubuntu-latest
+pool:
+  vmImage: ubuntu-latest
 
 steps:
 - script: exit 1
