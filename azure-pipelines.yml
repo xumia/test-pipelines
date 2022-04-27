@@ -34,7 +34,7 @@ variables:
   ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
     value: $(Build.SourceBranch)
 
-pool: 1es-sonic-armhf
+pool: ubuntu-latest
 
 steps:
 - script: exit 1
