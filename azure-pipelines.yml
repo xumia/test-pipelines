@@ -3,8 +3,6 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pr: none
-
 trigger:
   branches:
     include:
@@ -29,20 +27,20 @@ parameters:
     type: number
     default: 141
 
-pool: 1es-sonic-armhf
+variables:
+- name: BUILD_BRANCH
+  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+    value: $(System.PullRequest.TargetBranch)
+  ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+    value: $(Build.SourceBranch)
+
+pool:
+  vmImage: ubuntu-latest
 
 steps:
-- script: exit 1
-  ${{ if eq(parameters.Test, 142) }}:
-    continueOnError: True
-  displayName: 'Run a one-line script'
-
-- script: echo "Last step failed"
-  continueOnError: True
-  condition: failed()
-  displayName: 'Run if failed'
 
 - script: |
+    echo BUILD_BRANCH=$(BUILD_BRANCH)
     echo triggerDefinitionName=$(Build.TriggeredBy.DefinitionName)
     echo runId=$(resources.pipeline.test-workflow.runID)
     echo triggerSourceBranch=$(resources.pipeline.test-workflow.sourceBranch)
