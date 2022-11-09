@@ -37,7 +37,7 @@ steps:
     continueOnError: True
   displayName: 'Run a one-line script'
 
-- script:
+- script: |
     echo "Last step failed"
     sleep 600
   continueOnError: True
