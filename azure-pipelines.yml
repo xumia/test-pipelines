@@ -29,7 +29,7 @@ parameters:
     type: number
     default: 141
 
-pool: 1es-sonic-armhf
+pool: sonicbld
 
 steps:
 - script: exit 1
