@@ -37,7 +37,9 @@ steps:
     continueOnError: True
   displayName: 'Run a one-line script'
 
-- script: echo "Last step failed"
+- script:
+    echo "Last step failed"
+    sleep 600
   continueOnError: True
   condition: failed()
   displayName: 'Run if failed'
