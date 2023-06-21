@@ -29,8 +29,10 @@ stages:
 - stage: Test
   jobs:
   - job: test
+    variables:
+      SLAVE_DOCKER_IMAGE: $[ stageDependencies.BuildVS.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
     container:
-      image: $[ stageDependencies.BuildVS.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
+      image: $[ variables.SLAVE_DOCKER_IMAGE ]
     steps:
     - script:
         echo test
