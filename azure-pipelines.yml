@@ -12,7 +12,7 @@ pool: sonicbld
 
 variables:
   IMAGE_DISTRO: bullseye
-  IMAGE: sonicdev-microsoft.azurecr.io:443/sonic-slave-$(bullseye):latest
+  IMAGE: sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye:latest
 
 stages:
 - stage: Test
