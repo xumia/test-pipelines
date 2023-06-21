@@ -27,12 +27,13 @@ stages:
       name: SetVar
       displayName: "Check if vstest is needed."
 - stage: Test
+  dependsOn: Build
   jobs:
   - job: test
     variables:
-      SLAVE_DOCKER_IMAGE: $[ stageDependencies.BuildVS.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
+      SLAVE_DOCKER_IMAGE: $[ stageDependencies.Build.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
     container:
-      image: $[ variables.SLAVE_DOCKER_IMAGE ]
+      image: $[ stageDependencies.Build.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
     steps:
     - script:
         echo test
