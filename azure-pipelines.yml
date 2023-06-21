@@ -19,7 +19,7 @@ stages:
   jobs:
   - job: test
     container:
-      image: $[variables.IMAGE]
+      image: $[ variables.IMAGE ]
     steps:
     - script:
         echo test
