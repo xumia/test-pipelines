@@ -13,6 +13,7 @@ pool: sonicbld
 variables:
   IMAGE_DISTRO: bullseye
 
+stages:
 - stage: Test
   jobs:
   - job: test
