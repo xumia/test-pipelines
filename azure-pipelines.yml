@@ -5,49 +5,21 @@
 
 pr: none
 
-trigger:
-  branches:
-    include:
-    - 202012
-    - 202???
-    - 201[9]11
-    exclude:
-    - 202006
-
-resources:
- pipelines:
-   - pipeline: test-workflow
-     source: xumia.test-workflow
-     trigger:
-      enabled: true
-      branches:
-       include:
-         - '*'
-
-parameters:
-  - name: Test
-    type: number
-    default: 141
+trigger: none
 
 pool: sonicbld
 
-steps:
-- script: exit 1
-  ${{ if eq(parameters.Test, 142) }}:
-    continueOnError: True
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo "Last step failed"
-    sleep 600
-  continueOnError: True
-  condition: failed()
-  displayName: 'Run if failed'
+variables:
+  IMAGE_DISTRO: bullseye
 
-- script: |
-    echo triggerDefinitionName=$(Build.TriggeredBy.DefinitionName)
-    echo runId=$(resources.pipeline.test-workflow.runID)
-    echo triggerSourceBranch=$(resources.pipeline.test-workflow.sourceBranch)
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- stage: Test
+  jobs:
+  - job: test
+    container:
+      image: sonicdev-microsoft.azurecr.io:443/sonic-slave-$(bullseye):latest
+    steps:
+    - script:
+        echo test
+      continueOnError: True
+      displayName: 'Run a one-line script'
