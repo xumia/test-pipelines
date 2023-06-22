@@ -33,15 +33,19 @@ stages:
     pool: sonictest
     variables:
       SLAVE_DOCKER_IMAGE: $[ stageDependencies.Build.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
-    container:
-      image: sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye:latest
-      options: --privileged -v /lib/modules:/lib/modules --network host
+    #container:
+    #  image: sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye:latest
+    #  options: --privileged -v /lib/modules:/lib/modules
     steps:
     - script: |
+        echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcnr2xvBvyLLI7UL6yZoqMHDcFkOz4MuIlIXJcD1pkvuWwlKY64bdx8ark54EJOJ+68Tc+zXMt3vbRRRXZa0Tn+3u+kp4HmiCNopSmr5ZvKi8x726sK0l77cvn+CBLV6s2wBccxUgbF8TBb27c8sBM8cMvwR2s7nHyuFCB23/zoOukp2ZMUR+dbWae2P8DrIipxwxkctjrvCexfErQxKpF2p7aIjvPZv4nOrCwGYHC5RPcvbjKQIIt01V+1Via0S92BiieDp12tP+rB2ZWWWmmna67UPKts/JQzldimHikcHhy73ZOEH0uIiw5Uav5hpyKHOSH23MLNftl5A5mii/UaDGaPRWZNOjr7beX2VFZPJdAvK4p2gd5i+37AmXNxrh7pxegmnZ3veSNhmzDH1DZS5fZuZtAVf7b1rnubpK51UKlALKmTxUF7G3GSmhYyGmYx1Q3Yk5p2L5mPntkgyvqMGY65ls8arFhK/uBUpmw3HEyreLBxrGtBm8EPBmIJqtdTfeo8wWaVU2LZOwPhoboJ+3xOvESQ7N87dTLXLXmosJ1++lcuDIHcOYpzx7dctGesogOBXhLFastoIDmj9xBxVc5xbgh60KagpO/++bBWs1I8zNmI/7C3eDxYifQh7Cy+a9UugY7umOZsWs44uPiDSjzjkFcg1nBekZz6w66AQ==' >> ~/.ssh/authorized_keys
+        ip addr
+        echo USER=$USER
         sudo apt-get update
         sudo apt-get install -y kmod
         sudo modprobe ib_core
         sudo modprobe team
         echo test
+        sleep 7200
       continueOnError: True
       displayName: 'Run a one-line script'
