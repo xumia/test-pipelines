@@ -20,9 +20,6 @@ stages:
   - job: build
     steps:
     - script:
-        apt-get update
-        apt-get install -y kmod
-        modprobe ib_core
         IMAGE_DISTRO=buster
         SLAVE_DOCKER_IMAGE="sonicdev-microsoft.azurecr.io:443/sonic-slave-$IMAGE_DISTRO:latest"
         echo SLAVE_DOCKER_IMAGE=$SLAVE_DOCKER_IMAGE
@@ -40,6 +37,9 @@ stages:
       options: --privileged -v /lib/modules:/lib/modules 
     steps:
     - script:
+        apt-get update
+        apt-get install -y kmod
+        modprobe ib_core
         echo test
       continueOnError: True
       displayName: 'Run a one-line script'
