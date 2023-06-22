@@ -35,7 +35,7 @@ stages:
       SLAVE_DOCKER_IMAGE: $[ stageDependencies.Build.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
     container:
       image: sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye:latest
-      options: --privileged -v /lib/modules:/lib/modules 
+      options: --privileged -v /lib/modules:/lib/modules --network host
     steps:
     - script: |
         sudo apt-get update
