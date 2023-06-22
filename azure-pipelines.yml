@@ -37,9 +37,9 @@ stages:
       options: --privileged -v /lib/modules:/lib/modules 
     steps:
     - script: |
-        apt-get update
-        apt-get install -y kmod
-        modprobe ib_core
+        sudo apt-get update
+        sudo apt-get install -y kmod
+        sudo modprobe ib_core
         echo test
       continueOnError: True
       displayName: 'Run a one-line script'
