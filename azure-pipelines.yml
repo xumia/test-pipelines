@@ -36,7 +36,7 @@ stages:
       image: sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye:latest
       options: --privileged -v /lib/modules:/lib/modules 
     steps:
-    - script:
+    - script: |
         apt-get update
         apt-get install -y kmod
         modprobe ib_core
