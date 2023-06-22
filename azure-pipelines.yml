@@ -30,6 +30,7 @@ stages:
   dependsOn: Build
   jobs:
   - job: test
+    pool: sonictest
     variables:
       SLAVE_DOCKER_IMAGE: $[ stageDependencies.Build.outputs['build.SetVar.SLAVE_DOCKER_IMAGE'] ]
     container:
@@ -40,6 +41,7 @@ stages:
         sudo apt-get update
         sudo apt-get install -y kmod
         sudo modprobe ib_core
+        sudo modprobe team
         echo test
       continueOnError: True
       displayName: 'Run a one-line script'
